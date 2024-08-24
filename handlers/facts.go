@@ -6,8 +6,12 @@ import (
 	"github.com/maksimdudarev/golang-webapi-example/models"
 )
 
-func Home(c *fiber.Ctx) error {
-	return c.SendString("Hello, World!!")
+func ListFacts(c *fiber.Ctx) error {
+	facts := []models.Fact{}
+
+	database.DB.Db.Find(&facts)
+
+	return c.Status(fiber.StatusOK).JSON(facts)
 }
 
 func CreateFact(c *fiber.Ctx) error {
