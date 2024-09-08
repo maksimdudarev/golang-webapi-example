@@ -1,7 +1,8 @@
 version: '3.8'
 
 services:
-  web:
+  webapi:
+    container_name: webapi
     build: .
     env_file:
       - .env
@@ -11,6 +12,7 @@ services:
       - .:/usr/src/app
     command: go run cmd/routes.go cmd/main.go -b 0.0.0.0
   db:
+    container_name: db
     image: postgres:alpine
     environment:
       - POSTGRES_USER=${DB_USER}
