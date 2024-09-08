@@ -3,13 +3,16 @@ version: '3.8'
 services:
   webapi:
     container_name: webapi
-    build: .
+    build: 
+      context: ./Example1
     env_file:
       - .env
+    depends_on:
+      - db
     ports:
       - 3000:3000
     volumes:
-      - .:/usr/src/app
+      - .:/app
     command: go run cmd/routes.go cmd/main.go -b 0.0.0.0
   db:
     container_name: db
