@@ -11,8 +11,6 @@ services:
       - db
     ports:
       - 3000:3000
-    volumes:
-      - .:/app
     command: go run cmd/routes.go cmd/main.go -b 0.0.0.0
   db:
     container_name: db
