@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  webapi:
-    container_name: webapi
+  api1:
+    container_name: api1
     build: 
       context: ./Example1
     env_file:
@@ -12,6 +12,14 @@ services:
     ports:
       - 3000:3000
     command: go run cmd/routes.go cmd/main.go -b 0.0.0.0
+
+  api2:
+    container_name: api2
+    build:
+      context: ./Example2
+    ports:
+      - 8080:8080
+
   db:
     container_name: db
     image: postgres:alpine
