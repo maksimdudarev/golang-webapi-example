@@ -1,12 +1,16 @@
-FROM golang:1.23.0
+FROM golang:1.23.0-alpine AS build
 
 WORKDIR /usr/src/app
 
 COPY . .
 RUN go mod tidy
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /api
+RUN go build -o /api
+
+FROM gcr.io/distroless/static AS final
+
+COPY --from=build /api /api
 
 EXPOSE 3000
 
-CMD ["/api"]
+ENTRYPOINT ["/api"]
