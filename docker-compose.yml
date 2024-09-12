@@ -11,7 +11,7 @@ services:
       - db
     ports:
       - 3000:3000
-    command: go run cmd/routes.go cmd/main.go -b 0.0.0.0
+    command: go run main.go -b 0.0.0.0
 
   api2:
     container_name: api2
