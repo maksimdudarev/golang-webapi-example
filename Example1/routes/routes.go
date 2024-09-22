@@ -6,7 +6,14 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
-	app.Get("/", handlers.ListFacts)
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("root")
+	})
 
-	app.Post("/fact", handlers.CreateFact)
+	fact := app.Group("/fact")
+	fact.Get("/", handlers.GetFactList)
+	fact.Get("/:id", handlers.GetFactItem)
+	fact.Post("/", handlers.CreateFact)
+	fact.Put("/:id", handlers.UpdateFact)
+	fact.Delete("/:id", handlers.DeleteFact)
 }

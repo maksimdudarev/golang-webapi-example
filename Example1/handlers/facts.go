@@ -6,7 +6,7 @@ import (
 	"github.com/maksimdudarev/golang-webapi-example/models"
 )
 
-func ListFacts(c *fiber.Ctx) error {
+func GetFactList(c *fiber.Ctx) error {
 	facts := []models.Fact{}
 
 	database.DB.Db.Find(&facts)
@@ -14,6 +14,9 @@ func ListFacts(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(facts)
 }
 
+func GetFactItem(c *fiber.Ctx) error {
+	return c.SendString("I'm a GET item request!")
+}
 func CreateFact(c *fiber.Ctx) error {
 	fact := new(models.Fact)
 
@@ -26,4 +29,12 @@ func CreateFact(c *fiber.Ctx) error {
 	database.DB.Db.Create(&fact)
 
 	return c.Status(fiber.StatusOK).JSON(fact)
+}
+
+func UpdateFact(c *fiber.Ctx) error {
+	return c.SendString("I'm a PUT request!")
+}
+
+func DeleteFact(c *fiber.Ctx) error {
+	return c.SendString("I'm a DELETE request!")
 }
