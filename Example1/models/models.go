@@ -2,8 +2,9 @@ package models
 
 import "gorm.io/gorm"
 
-type Fact struct {
+type Discount struct {
 	gorm.Model
-	Question string `json:"question" gorm:"text;not null;default:null"`
-	Answer   string `json:"answer"`
+	ProductName string
+	Description string
+	Amount      int
 }

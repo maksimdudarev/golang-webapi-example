@@ -10,10 +10,10 @@ func SetupRoutes(app *fiber.App) {
 		return c.SendString("root")
 	})
 
-	fact := app.Group("/fact")
-	fact.Get("/", handlers.GetFactList)
-	fact.Get("/:id", handlers.GetFactItem)
-	fact.Post("/", handlers.CreateFact)
-	fact.Put("/:id", handlers.UpdateFact)
-	fact.Delete("/:id", handlers.DeleteFact)
+	discount := app.Group("/discount")
+	discount.Get("/", handlers.GetDiscountList)
+	discount.Get("/:id", handlers.GetDiscountItem)
+	discount.Post("/", handlers.CreateDiscount)
+	discount.Put("/:id", handlers.UpdateDiscount)
+	discount.Delete("/:id", handlers.DeleteDiscount)
 }
