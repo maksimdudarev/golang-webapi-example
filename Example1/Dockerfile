@@ -1,4 +1,4 @@
-FROM golang:1.23.0
+FROM golang:1.23.0 AS build
 
 WORKDIR /usr/src/app
 
@@ -6,6 +6,10 @@ COPY . .
 RUN go mod tidy
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /api
+
+FROM scratch
+
+COPY --from=build /api /api
 
 EXPOSE 3000
 
